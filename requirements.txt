@@ -1,0 +1,7 @@
+dvc[s3]
+numpy
+pandas
+scikit-learn
+pyyaml
+dagster
+dagster-webserver

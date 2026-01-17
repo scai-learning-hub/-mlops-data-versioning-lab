@@ -1,0 +1,18 @@
+stages:
+  generate:
+    cmd: python src/make_tabular_data.py --out data/tabular/raw/dataset.csv
+    deps:
+      - src/make_tabular_data.py
+      - params.yaml
+    params:
+      - data
+    outs:
+      - data/tabular/raw/dataset.csv
+
+  profile:
+    cmd: python src/profile_tabular.py --inp data/tabular/raw/dataset.csv --out reports/profile.json
+    deps:
+      - src/profile_tabular.py
+      - data/tabular/raw/dataset.csv
+    outs:
+      - reports/profile.json
