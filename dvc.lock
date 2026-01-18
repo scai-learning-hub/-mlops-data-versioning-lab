@@ -5,8 +5,8 @@ stages:
     deps:
     - path: params.yaml
       hash: md5
-      md5: 1045ce190045d9ba0e6249edeb7ce9dc
-      size: 142
+      md5: af8e05df318952e0c903a6fa3203a837
+      size: 143
     - path: src/make_tabular_data.py
       hash: md5
       md5: 73397f3075a652085ab5dfb38d17b5ac
@@ -15,7 +15,7 @@ stages:
       params.yaml:
         data:
           seed: 42
-          n_samples: 550
+          n_samples: 1222
           n_features: 12
           n_informative: 7
           noise_std: 0.5
@@ -24,16 +24,16 @@ stages:
     outs:
     - path: data/tabular/raw/dataset.csv
       hash: md5
-      md5: f885feee150fd347bb4cd43efd1f29f1
-      size: 129113
+      md5: 5f8117a69d26878dd272c4cd5126fa94
+      size: 286127
   profile:
     cmd: python src/profile_tabular.py --inp data/tabular/raw/dataset.csv --out 
       reports/profile.json
     deps:
     - path: data/tabular/raw/dataset.csv
       hash: md5
-      md5: f885feee150fd347bb4cd43efd1f29f1
-      size: 129113
+      md5: 5f8117a69d26878dd272c4cd5126fa94
+      size: 286127
     - path: src/profile_tabular.py
       hash: md5
       md5: b94bca64f7ae19cdacf5ce1afee508a2
@@ -41,5 +41,5 @@ stages:
     outs:
     - path: reports/profile.json
       hash: md5
-      md5: 9e5d45faf05e1da83b4f839f9ec26e1f
-      size: 52
+      md5: 45d444065db8dfe17a43b9161f2ad31e
+      size: 54
