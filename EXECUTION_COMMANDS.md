@@ -96,10 +96,10 @@ dvc repro profile
 
 ## 🎯 Terminal 3: Git Branch Operations
 
-### Create Second Branch (dagster-redpanda)
+### Create Second Branch (DVC_Dagster_Orcherstation)
 ```powershell
 # Create and switch to new branch
-git checkout -b dagster-redpanda
+git checkout -b DVC_Dagster_Orcherstation
 
 # Verify branch
 git branch
@@ -111,7 +111,7 @@ git add .
 git commit -m "feat: Add Dagster orchestration with DVC integration"
 
 # Push to GitHub
-git push -u github dagster-redpanda
+git push -u github DVC_Dagster_Orcherstation
 ```
 
 ### Switch Between Branches
@@ -120,8 +120,8 @@ git push -u github dagster-redpanda
 git checkout main
 dvc checkout
 
-# Switch to dagster-redpanda
-git checkout dagster-redpanda
+# Switch to DVC_Dagster_Orcherstation
+git checkout DVC_Dagster_Orcherstation
 dvc checkout
 
 # View all branches
@@ -188,14 +188,14 @@ notepad params.yaml
 
 ```powershell
 # Create branch
-git checkout -b dagster-redpanda
+git checkout -b DVC_Dagster_Orcherstation
 
 # Add changes
 git add .
 git commit -m "feat: Dagster orchestration with sensors and schedules"
 
 # Push to GitHub
-git push -u github dagster-redpanda
+git push -u github DVC_Dagster_Orcherstation
 
 # Verify on GitHub
 git branch -a
