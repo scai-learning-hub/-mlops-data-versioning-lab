@@ -1,6 +1,6 @@
 data:
   seed: 42
-  n_samples: 5500
+  n_samples: 550
   n_features: 12
   n_informative: 7
 
