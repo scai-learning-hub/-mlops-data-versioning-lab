@@ -1,0 +1,57 @@
+# DVC
+/data
+/reports
+.dvc/tmp
+.dvc/cache
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+
+# Environment
+.env
+.env.local
+*.log
+
+# Dagster
+dagster_home/
+.dagster/
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

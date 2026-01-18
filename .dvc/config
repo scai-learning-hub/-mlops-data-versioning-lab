@@ -1,0 +1,6 @@
+[core]
+    remote = dagshub
+['remote "dagshub"']
+    url = s3://dvc
+    endpointurl = https://dagshub.com/dwivediavivek/Learning2.s3
+    access_key_id = 9e6c7e497b619c8cf9518cd3e8c242537197886e
