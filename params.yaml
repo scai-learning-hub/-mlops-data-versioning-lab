@@ -5,7 +5,7 @@ data:
   n_informative: 7
 
   noise_std: 0.5
-  missing_rate: 0.05
+  missing_rate: 0.07
   shift_mean: 0.0
 
 
