@@ -3,10 +3,10 @@ data:
   n_samples: 700
   n_features: 12
   n_informative: 7
-
   noise_std: 0.1
   missing_rate: 0.08
-  shift_mean: 0.15
+  shift_mean: 0.0
 
-
-
+drift:
+  live_window_size: 300
+  live_chunk_size: 50

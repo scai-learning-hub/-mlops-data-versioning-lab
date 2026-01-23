@@ -55,3 +55,6 @@ logs/
 tmp/
 temp/
 *.tmp
+
+/data
+!/data/**/*.dvc

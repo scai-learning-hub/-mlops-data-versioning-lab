@@ -5,8 +5,8 @@ stages:
     deps:
     - path: params.yaml
       hash: md5
-      md5: d6f4eccd4e21a00bff30784a45722e85
-      size: 143
+      md5: 9f9a742b269170d479eb6b6faf32a3f4
+      size: 192
     - path: src/make_tabular_data.py
       hash: md5
       md5: 73397f3075a652085ab5dfb38d17b5ac
@@ -20,20 +20,20 @@ stages:
           n_informative: 7
           noise_std: 0.1
           missing_rate: 0.08
-          shift_mean: 0.15
+          shift_mean: 0.0
     outs:
     - path: data/tabular/raw/dataset.csv
       hash: md5
-      md5: 68ea54aeb7f7f29b6bf70a33a00084da
-      size: 161630
+      md5: 4a8b7eb4b08e749caee5f42f8bc22d05
+      size: 161920
   profile:
     cmd: python src/profile_tabular.py --inp data/tabular/raw/dataset.csv --out 
       reports/profile.json
     deps:
     - path: data/tabular/raw/dataset.csv
       hash: md5
-      md5: 68ea54aeb7f7f29b6bf70a33a00084da
-      size: 161630
+      md5: 4a8b7eb4b08e749caee5f42f8bc22d05
+      size: 161920
     - path: src/profile_tabular.py
       hash: md5
       md5: b94bca64f7ae19cdacf5ce1afee508a2
@@ -43,3 +43,60 @@ stages:
       hash: md5
       md5: ab165314b2c2a52f86d1befdad97bae0
       size: 53
+  live_window:
+    cmd: "python src/live_window.py --current data/tabular/raw/dataset.csv --events
+      data/tabular/live/events.csv --window 300 --chunk 50 --out data/tabular/live/window.csv\n"
+    deps:
+    - path: data/tabular/raw/dataset.csv
+      hash: md5
+      md5: 4a8b7eb4b08e749caee5f42f8bc22d05
+      size: 161920
+    - path: params.yaml
+      hash: md5
+      md5: 9f9a742b269170d479eb6b6faf32a3f4
+      size: 192
+    - path: src/live_window.py
+      hash: md5
+      md5: 43a1c5e8d4f05d2a38248da191e80835
+      size: 1843
+    params:
+      params.yaml:
+        drift.live_chunk_size: 50
+        drift.live_window_size: 300
+    outs:
+    - path: data/tabular/live/events.csv
+      hash: md5
+      md5: 2aa35ba15385d2b088372f723db9392f
+      size: 11505
+    - path: data/tabular/live/window.csv
+      hash: md5
+      md5: 2aa35ba15385d2b088372f723db9392f
+      size: 11505
+  drift_batch:
+    cmd: "python src/drift_evidently.py --current data/tabular/raw/dataset.csv --reference
+      data/tabular/reference/dataset.csv --out-dir reports/drift_batch --metrics-out
+      metrics/drift_batch.json\n"
+    outs:
+    - path: metrics/drift_batch.json
+      hash: md5
+      md5: 2976116b7d91041b9ddc643f31d56fae
+      size: 263
+    - path: reports/drift_batch
+      hash: md5
+      md5: a35894ca007e62b84591b7bd8f745df5.dir
+      size: 4534848
+      nfiles: 3
+  drift_live:
+    cmd: "python src/drift_evidently.py --current data/tabular/live/window.csv --reference
+      data/tabular/reference/dataset.csv --out-dir reports/drift_live --metrics-out
+      metrics/drift_live.json\n"
+    outs:
+    - path: metrics/drift_live.json
+      hash: md5
+      md5: 9469224bc9a1c5c9305fa2295cdf29fe
+      size: 262
+    - path: reports/drift_live
+      hash: md5
+      md5: ccb1146a49f498aac90b1095a7e8f89f.dir
+      size: 4287975
+      nfiles: 3

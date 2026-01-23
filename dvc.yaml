@@ -16,3 +16,49 @@ stages:
       - data/tabular/raw/dataset.csv
     outs:
       - reports/profile.json
+
+  live_window:
+    cmd: >
+      python src/live_window.py
+      --current data/tabular/raw/dataset.csv
+      --events data/tabular/live/events.csv
+      --window ${drift.live_window_size}
+      --chunk ${drift.live_chunk_size}
+      --out data/tabular/live/window.csv
+    deps:
+      - src/live_window.py
+      - data/tabular/raw/dataset.csv
+      - params.yaml
+    params:
+      - drift.live_window_size
+      - drift.live_chunk_size
+    outs:
+      - data/tabular/live/events.csv
+      - data/tabular/live/window.csv
+
+  drift_batch:
+    cmd: >
+      python src/drift_evidently.py
+      --current data/tabular/raw/dataset.csv
+      --reference data/tabular/reference/dataset.csv
+      --out-dir reports/drift_batch
+      --metrics-out metrics/drift_batch.json
+    
+    outs:
+      - reports/drift_batch
+    metrics:
+      - metrics/drift_batch.json
+
+  drift_live:
+    cmd: >
+      python src/drift_evidently.py
+      --current data/tabular/live/window.csv
+      --reference data/tabular/reference/dataset.csv
+      --out-dir reports/drift_live
+      --metrics-out metrics/drift_live.json
+    
+    outs:
+      - reports/drift_live
+    metrics:
+      - metrics/drift_live.json
+
